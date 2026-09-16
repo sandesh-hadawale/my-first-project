@@ -1,0 +1,52 @@
+<div class="login-wrapper">
+  <div class="login-card">
+    <h2>Welcome Back!</h2>
+    <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+     <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          [(ngModel)]="email"
+          #emailRef="ngModel"
+          required
+          email
+          placeholder="Enter your email"
+        />
+        <div class="error" *ngIf="emailRef.invalid && emailRef.touched">
+          Email is required and must be valid
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="password"
+          #passwordRef="ngModel"
+          required
+          minlength="6"
+          placeholder="Enter your password"
+        />
+        <div class="error" *ngIf="passwordRef.invalid && passwordRef.touched">
+          Password must be at least 6 characters
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    </form>
+
+    <div class="links">
+      <a href="#">Forgot Password?</a>
+      <a href="#">Sign Up</a>
+    </div>
+  </div>
+</div>
